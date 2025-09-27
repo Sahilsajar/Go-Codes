@@ -42,8 +42,8 @@ func main() {
 	d2.walk()
 	d2.run()
 
+	fmt.Println("Interface: ")
 	/*for interface d1 will not able to call run method */
 	//youngRun(d1) this will throw an error as value semnatic object cannot pointer semantic method through an interface
-	fmt.Println("Interface: ")
 	youngRun(d2)
 }
