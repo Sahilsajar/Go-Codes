@@ -7,7 +7,7 @@ import (
 )
 
 //check online for what is race around condition
-//The below condition is race around condition as the counter value should be 100 at the end
+//The below condition is race around condition as the counter value should be 100 at the end but it may vary each time.
 
 func main() {
 	var count int = 0
@@ -16,7 +16,6 @@ func main() {
 	var wg sync.WaitGroup
 
 	wg.Add(100)
-	defer wg.Wait()
 
 	for i := 0; i < 100; i++ {
 		go func() {
@@ -27,7 +26,7 @@ func main() {
 			wg.Done()
 		}()
 	}
-
+	wg.Wait() //put wait before  print so let all the concurrent code finished first
 	fmt.Println("Count: ", count)
 }
 
